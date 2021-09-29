@@ -34,6 +34,8 @@ parser.add_argument('--no-cuda', action='store_true', default=False,
                     help='enables CUDA training')
 parser.add_argument('--seed', type=int, default=1, metavar='S',
                     help='random seed (default: 1)')
+parser.add_argument('--outputpath', default= '.',
+                    help='output path')
 args = parser.parse_args()
 args.cuda = not args.no_cuda and torch.cuda.is_available()
 
@@ -120,7 +122,7 @@ def main():
         
         img = (img*256).astype('uint16')
         img = Image.fromarray(img)
-        img.save('Test_disparity.png')
+        img.save(args.outputpath)
 
 if __name__ == '__main__':
    main()
