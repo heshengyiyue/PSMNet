@@ -2,14 +2,13 @@ import os
 
 left_img_path = '/mnt/c/users/public/images/rectified_laparoscope/rectified_left'
 right_img_path = '/mnt/c/users/public/images/rectified_laparoscope/rectified_right'
-#.png Directory(output)
-png_path = '/mnt/c/users/public/images/results_png'
-length = len(os.listdir(left_img_path))
-for flo_file in os.listdir(flo_path):
-    flo_file_path = os.path.join(flo_path, flo_file)
-    basename, ext = os.path.splitext(flo_file)
-    png_file = basename + '.png'
-    png_file_path = os.path.join(png_path, png_file)
-    ml = './color_flow\t' + flo_file_path + '\t' + png_file_path
-    print(ml)
+
+left_img_list = os.listdir(left_img_path)
+right_img_list = os.listdir(right_img_path)
+
+for iter in len(left_img_list)
+    left_img_filename = left_img_list[iter]
+    right_img_filename = right_img_list[iter]
+    ml =  'python Test_img.py --loadmodel ./models/pretrained_model_KITTI2015.tar --leftimg '\
+          + left_img_filename + ' --rightimg ' + right_img_filename
     os.system(ml)
