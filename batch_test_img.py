@@ -1,8 +1,8 @@
 import os
 
-left_img_path = '/mnt/c/users/public/images/rectified_laparoscope/rectified_left'
-right_img_path = '/mnt/c/users/public/images/rectified_laparoscope/rectified_right'
-output_path = '/mnt/c/users/public/images'
+left_img_path = '/mnt/c/users/public/images/rectified_towel/rectifiedPNG/left'
+right_img_path = '/mnt/c/users/public/images/rectified_towel/rectifiedPNG/right'
+output_path = '/mnt/c/users/public/images/rectified_towel/disparityMap'
 
 left_img_list = os.listdir(left_img_path)
 right_img_list = os.listdir(right_img_path)
