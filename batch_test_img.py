@@ -1,8 +1,8 @@
 import os
 
-left_img_path = '/mnt/c/users/public/images/rectified_towel/rectifiedPNG/left'
-right_img_path = '/mnt/c/users/public/images/rectified_towel/rectifiedPNG/right'
-output_path = '/mnt/c/users/public/images/rectified_towel/disparityMap'
+left_img_path = '/mnt/c/users/public/images/rectified_fabric/rectified_textureMask/left'
+right_img_path = '/mnt/c/users/public/images/rectified_fabric/rectified_textureMask/right'
+output_path = '/mnt/c/users/public/images/rectified_fabric/disparityMap'
 
 left_img_list = os.listdir(left_img_path)
 right_img_list = os.listdir(right_img_path)
