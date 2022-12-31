@@ -86,6 +86,10 @@ def main():
         imgL_o = Image.open(args.leftimg).convert('RGB')
         imgR_o = Image.open(args.rightimg).convert('RGB')
 
+        # convert to 635x512
+        imgL_o = Image.open(args.leftimg).convert('RGB')
+        imgR_o = Image.open(args.rightimg).convert('RGB')
+
         imgL = infer_transform(imgL_o)
         imgR = infer_transform(imgR_o) 
        
@@ -121,6 +125,8 @@ def main():
             img = pred_disp
         
         img = (img*256).astype('uint16')
+        # resize to original size
+        img = 
         img = Image.fromarray(img)
         img.save(args.outputpath)
 
