@@ -87,8 +87,9 @@ def main():
         imgR_o = Image.open(args.rightimg).convert('RGB')
 
         # convert to 635x512
-        imgL_o = Image.open(args.leftimg).convert('RGB')
-        imgR_o = Image.open(args.rightimg).convert('RGB')
+        img_o_width, img_o_height = imgL_o.shape[0:2]
+        imgL_o = cv2.resize(imgL_o, (int(635), int(512)))
+        imgR_o = cv2.resize(imgR_o, (int(635), int(512)))
 
         imgL = infer_transform(imgL_o)
         imgR = infer_transform(imgR_o) 
@@ -126,7 +127,7 @@ def main():
         
         img = (img*256).astype('uint16')
         # resize to original size
-        img = 
+        img = cv2.resize(img, (int(img_o_width), int(img_o_height)))
         img = Image.fromarray(img)
         img.save(args.outputpath)
 
