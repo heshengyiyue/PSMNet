@@ -1,8 +1,8 @@
 import os
 
-left_img_path = '/mnt/c/users/public/images/rectified_fabric_red/rectified_mixed/left'
-right_img_path = '/mnt/c/users/public/images/rectified_fabric_red/rectified_mixed/right'
-output_path = '/mnt/c/users/public/images/rectified_fabric_red/mixed_results/disparityMap'
+left_img_path = '/mnt/e/chen/documents/datamanagement/data/202212312045_rectified_image/rectified_left'
+right_img_path = '/mnt/e/chen/documents/datamanagement/data/202212312045_rectified_image/rectified_right'
+output_path = '/mnt/e/chen/documents/datamanagement/data/202212312045_rectified_image/psmnet_disparity_int16'
 
 left_img_list = os.listdir(left_img_path)
 right_img_list = os.listdir(right_img_path)
