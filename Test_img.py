@@ -83,18 +83,20 @@ def main():
         infer_transform = transforms.Compose([transforms.ToTensor(),
                                               transforms.Normalize(**normal_mean_var)])    
 
-        imgL_o = Image.open(args.leftimg).convert('RGB')
-        imgR_o = Image.open(args.rightimg).convert('RGB')
-
         # convert to 635x512
-        img_o_width, img_o_height = imgL_o.shape[0:2]
-        imgL_o = cv2.resize(imgL_o, (int(635), int(512)))
-        imgR_o = cv2.resize(imgR_o, (int(635), int(512)))
+        img_o = cv2.imread(args.leftimg,-1)
+        img_o_height, img_o_width = img_o.shape[0:2]
+        img_o_resized = cv2.resize(img_o, (int(635), int(512)))
+        cv2.imwrite("./temp.png", img_o_resized)
+        imgL_o = Image.open("./temp.png").convert('RGB')
+        img_o = cv2.imread(args.rightimg,-1)
+        img_o_resized = cv2.resize(img_o, (int(635), int(512)))
+        cv2.imwrite("./temp.png", img_o_resized)
+        imgR_o = Image.open("./temp.png").convert('RGB')
 
         imgL = infer_transform(imgL_o)
         imgR = infer_transform(imgR_o) 
        
-
         # pad to width and hight to 16 times
         if imgL.shape[1] % 16 != 0:
             times = imgL.shape[1]//16       
@@ -126,10 +128,12 @@ def main():
             img = pred_disp
         
         img = (img*256).astype('uint16')
-        # resize to original size
-        img = cv2.resize(img, (int(img_o_width), int(img_o_height)))
         img = Image.fromarray(img)
-        img.save(args.outputpath)
+        img.save("./temp.png")
+        # resize to original size
+        img = cv2.imread("./temp.png",-1)
+        img_resized = cv2.resize(img, (int(img_o_width), int(img_o_height)))
+        cv2.imwrite(args.outputpath, img_resized)
 
 if __name__ == '__main__':
    main()
