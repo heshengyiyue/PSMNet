@@ -133,7 +133,10 @@ def main():
         # resize to original size
         img = cv2.imread("./temp_d.png",-1)
         img_resized = cv2.resize(img, (int(img_o_width), int(img_o_height)))
-        cv2.imwrite(args.outputpath, img_resized)
+        output_path = args.outputpath
+        if output_path[-3:] == "jpg":
+            output_path = output_path.replace("jpg","png")
+        cv2.imwrite(output_path, img_resized)
 
 if __name__ == '__main__':
    main()
