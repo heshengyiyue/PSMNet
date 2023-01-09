@@ -87,12 +87,12 @@ def main():
         img_o = cv2.imread(args.leftimg,-1)
         img_o_height, img_o_width = img_o.shape[0:2]
         img_o_resized = cv2.resize(img_o, (int(635), int(512)))
-        cv2.imwrite("./temp.png", img_o_resized)
-        imgL_o = Image.open("./temp.png").convert('RGB')
+        cv2.imwrite("./temp_l.png", img_o_resized)
+        imgL_o = Image.open("./temp_l.png").convert('RGB')
         img_o = cv2.imread(args.rightimg,-1)
         img_o_resized = cv2.resize(img_o, (int(635), int(512)))
-        cv2.imwrite("./temp.png", img_o_resized)
-        imgR_o = Image.open("./temp.png").convert('RGB')
+        cv2.imwrite("./temp_r.png", img_o_resized)
+        imgR_o = Image.open("./temp_r.png").convert('RGB')
 
         imgL = infer_transform(imgL_o)
         imgR = infer_transform(imgR_o) 
@@ -127,11 +127,11 @@ def main():
         else:
             img = pred_disp
         
-        img = (img*256).astype('uint16')
+        img = (img*256*img_o_width/635).astype('uint16')
         img = Image.fromarray(img)
-        img.save("./temp.png")
+        img.save("./temp_d.png")
         # resize to original size
-        img = cv2.imread("./temp.png",-1)
+        img = cv2.imread("./temp_d.png",-1)
         img_resized = cv2.resize(img, (int(img_o_width), int(img_o_height)))
         cv2.imwrite(args.outputpath, img_resized)
 
